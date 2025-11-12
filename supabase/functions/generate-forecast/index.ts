@@ -42,7 +42,11 @@ serve(async (req) => {
     if (!response.ok) throw new Error("AI gateway error");
 
     const data = await response.json();
-    const content = data.choices[0].message.content;
+    let content = data.choices[0].message.content;
+    
+    // Strip markdown code blocks if present
+    content = content.replace(/```json\n/g, '').replace(/```\n/g, '').replace(/```/g, '').trim();
+    
     const forecast = JSON.parse(content);
 
     return new Response(JSON.stringify(forecast), {
