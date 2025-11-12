@@ -1,0 +1,4 @@
+project_id = "gnjqpibcqnvmiipjiwlh"
+
+[functions.generate-forecast]
+verify_jwt = false
